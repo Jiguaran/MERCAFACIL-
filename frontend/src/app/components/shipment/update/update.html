@@ -1,0 +1,104 @@
+<div class="max-w-4xl mx-auto p-6">
+  <div class="bg-white rounded-lg shadow-lg p-8">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">Editar Pago</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="!loading">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- CLIENTE -->
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Pedidos u Ordenes *</label>
+
+          <p-select
+            [options]="orders"
+            formControlName="id_order"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Selecciona un pedido"
+            class="w-full"
+          ></p-select>
+
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('id_order')">
+            {{ getFieldError('id_order') }}
+          </small>
+        </div>
+
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">numero de rastreo *</label>
+          <input 
+            pInputText 
+            formControlName="tracking_number" 
+            class="w-full"
+            [class.ng-invalid]="form.get('tracking_number')?.invalid && form.get('tracking_number')?.touched"
+          />
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('tracking_number')">
+            {{ getFieldError('tracking_number') }} 
+          </small>
+        </div>
+
+
+
+
+<!-- dasd -->
+
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Fecha de envio *</label>
+
+          <p-datepicker
+            placeholder="Selecciona una fecha"
+            formControlName="fecha_envio"
+            class="w-full"
+            dateFormat="dd/mm/yy"
+            [showIcon]="true"
+          ></p-datepicker>
+
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('fecha_envio')">
+            {{ getFieldError('fecha_envio') }}
+          </small>
+        </div>
+
+
+
+        
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Estado *</label>
+          <p-select
+            formControlName="status"
+            [options]="statusOptions"
+            placeholder="Seleccionar estado"
+            class="w-full"
+          ></p-select>
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-8">
+        <div class="bg-gray-50 rounded-lg p-4 flex gap-4 items-center">
+          <button
+            pButton
+            type="submit"
+            class="p-button bg-blue-500 hover:bg-blue-600 text-white"
+            label="Actualizar"
+            icon="pi pi-save"
+            [loading]="loading"
+            [disabled]="loading"
+          ></button>
+          <button
+            pButton
+            type="button"
+            class="p-button p-button-secondary"
+            label="Cancelar"
+            icon="pi pi-times"
+            (click)="cancelar()"
+            [disabled]="loading"
+          ></button>
+        </div>
+      </div>
+    </form>
+
+    <div class="flex justify-center" *ngIf="loading">
+      <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+    </div>
+  </div>
+</div>
+
+<p-toast></p-toast>

@@ -1,0 +1,103 @@
+<div class="max-w-4xl mx-auto p-6">
+  <div class="bg-white rounded-lg shadow-lg p-8">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">Crear Nuevo Vendedor</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Nombre *</label>
+          <input 
+            placeholder="Nombre"
+            pInputText 
+            formControlName="name" 
+            class="w-full"
+            [class.ng-invalid]="form.get('name')?.invalid && form.get('name')?.touched"
+          />
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('name')">
+            {{ getFieldError('name') }}
+          </small>
+        </div>
+
+
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">telefono *</label>
+          <input 
+            pInputText 
+            formControlName="phone" 
+            class="w-full"
+            placeholder="Numero de telefono"
+            [class.ng-invalid]="form.get('phone')?.invalid && form.get('phone')?.touched"
+          />
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('phone')">
+            {{ getFieldError('phone') }}
+          </small>
+        </div>
+
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Email *</label>
+          <input 
+            placeholder="Email"
+            pInputText 
+            type="email"
+            formControlName="email" 
+            class="w-full"
+            [class.ng-invalid]="form.get('email')?.invalid && form.get('email')?.touched"
+          />
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('email')">
+            {{ getFieldError('email') }}
+          </small>
+        </div>
+
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Contraseña *</label>
+          <input 
+            pInputText 
+            type="password" 
+            formControlName="password" 
+            class="w-full"
+            [class.ng-invalid]="form.get('password')?.invalid && form.get('password')?.touched"
+          />
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('password')">
+            {{ getFieldError('password') }}
+          </small>
+        </div>
+
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Estado *</label>
+          <p-select
+            formControlName="status"
+            [options]="statusOptions"
+            placeholder="Seleccionar estado"
+            class="w-full"
+          ></p-select>
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-8">
+        <div class="bg-gray-50 rounded-lg p-4 flex gap-4 items-center">
+          <button
+            pButton
+            type="submit"
+            class="p-button bg-blue-500 hover:bg-blue-600 text-white"
+            label="Guardar"
+            icon="pi pi-save"
+            [loading]="loading"
+            [disabled]="loading"
+          ></button>
+          <button
+            pButton
+            type="button"
+            class="p-button p-button-secondary"
+            label="Cancelar"
+            icon="pi pi-times"
+            (click)="cancelar()"
+            [disabled]="loading"
+          ></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<p-toast></p-toast>

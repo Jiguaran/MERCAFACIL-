@@ -1,0 +1,94 @@
+// client.http
+import dotenv from "dotenv";
+
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYzNDM1NTk2LCJleHAiOjE3NjM0MzYxOTZ9.G7_YrktyzprtybMrgAGOT4KNtjjflqJvfBqCwRsXBtg
+@baseUrl = http://localhost:4000
+
+### Peticiones sin TOKEN
+
+### Obtener todos los  
+GET {{baseUrl}}/api/orders
+
+
+### Obtener  por ID 
+GET {{baseUrl}}/api/orders/2
+
+### Crear un nuevo  
+POST {{baseUrl}}/api/orders
+Content-Type: application/json
+
+{
+  "id_client": "1",
+  "status": "PENDING",
+  "fecha": "2022-07-30",
+  "total": 1511012.75,
+  "statuss": "ACTIVE"
+}
+
+
+### Actualizar  
+PATCH {{baseUrl}}/api/orders/4
+Content-Type: application/json
+
+{
+  "id_client": "1",
+  "status": "PAID",
+  "fecha": "2024-07-30T10:00:00Z",
+  "total": 150.75,
+  "statuss": "ACTIVE"
+}
+
+
+
+### Eliminar  físicamente 
+DELETE {{baseUrl}}/api/orders/1
+
+
+
+### Eliminar lógicamente
+DELETE {{baseUrl}}/api/orders/1/logic
+
+
+### ================== RUTAS CON AUTENTICACIÓN ==================
+### Obtener todas las órdenes (CON token)
+GET {{baseUrl}}/api/ocul/Orders
+Authorization: Bearer {{token}}
+
+### Obtener orden por ID (CON token)
+GET {{baseUrl}}/api/ocul/Orders/2
+Authorization: Bearer {{token}}
+
+### Crear una nueva orden (CON token)
+POST {{baseUrl}}/api/ocul/Orders
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "id_client": "2",
+  "status": "SHIPPED",
+  "fecha": "2025-10-15T09:00:00Z",
+  "total": 299.99,
+  "statuss": "ACTIVE"
+}
+
+### Actualizar una orden (CON token)
+PATCH {{baseUrl}}/api/ocul/Orders/4
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "id_client": "1",
+  "status": "PAID",
+  "fecha": "2024-07-30T10:00:00Z",
+  "total": 150.75,
+  "statuss": "ACTIVE"
+}
+
+### Eliminar una orden físicamente (CON token)
+DELETE {{baseUrl}}/api/ocul/Orders/1
+Authorization: Bearer {{token}}
+
+### Eliminar una orden lógicamente (CON token)
+DELETE {{baseUrl}}/api/ocul/Orders/1/logic
+Authorization: Bearer {{token}}

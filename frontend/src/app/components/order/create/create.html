@@ -1,0 +1,117 @@
+<div class="max-w-4xl mx-auto p-6">
+  <div class="bg-white rounded-lg shadow-lg p-8">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">Crear Nueva Orden</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- CLIENTE -->
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Cliente *</label>
+
+          <p-select
+            [options]="clients"
+            formControlName="id_client"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Selecciona un cliente"
+            class="w-full"
+            [ngClass]="{
+              'ng-invalid': form.get('id_client')?.invalid && form.get('id_client')?.touched
+            }"
+          ></p-select>
+
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('id_client')">
+            {{ getFieldError('id_client') }}
+          </small>
+        </div>
+
+        <!-- TOTAL -->
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Total *</label>
+
+          <input
+            placeholder="Total"
+            pInputText
+            formControlName="total"
+            class="w-full"
+            [class.ng-invalid]="form.get('total')?.invalid && form.get('total')?.touched"
+          />
+
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('total')">
+            {{ getFieldError('total') }}
+          </small>
+        </div>
+
+        <!-- FECHA -->
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Fecha *</label>
+
+          <p-datepicker
+            placeholder="Selecciona una fecha"
+            formControlName="fecha"
+            class="w-full"
+            dateFormat="dd/mm/yy"
+            [showIcon]="true"
+            [class.ng-invalid]="form.get('fecha')?.invalid && form.get('fecha')?.touched"
+          ></p-datepicker>
+
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('fecha')">
+            {{ getFieldError('fecha') }}
+          </small>
+        </div>
+
+        <!-- ESTADO DEL PEDIDO -->
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Estado del Pedido *</label>
+
+          <p-select
+            formControlName="status"
+            [options]="statusorderOptions"
+            placeholder="Seleccionar estado"
+            class="w-full"
+          ></p-select>
+        </div>
+
+        <!-- ESTADO GENERAL -->
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Estado *</label>
+
+          <p-select
+            formControlName="status_general"
+            [options]="statusOptions"
+            placeholder="Seleccionar estado"
+            class="w-full"
+          ></p-select>
+        </div>
+
+      </div>
+
+      <div class="flex justify-center mt-8">
+        <div class="bg-gray-50 rounded-lg p-4 flex gap-4 items-center">
+          <button
+            pButton
+            type="submit"
+            class="p-button bg-blue-500 hover:bg-blue-600 text-white"
+            label="Guardar"
+            icon="pi pi-save"
+            [loading]="loading"
+            [disabled]="loading"
+          ></button>
+
+          <button
+            pButton
+            type="button"
+            class="p-button p-button-secondary"
+            label="Cancelar"
+            icon="pi pi-times"
+            (click)="cancelar()"
+            [disabled]="loading"
+          ></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<p-toast></p-toast>

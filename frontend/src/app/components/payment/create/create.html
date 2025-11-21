@@ -1,0 +1,131 @@
+<div class="max-w-4xl mx-auto p-6">
+  <div class="bg-white rounded-lg shadow-lg p-8">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">Crear Nuevo Envio</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+<div class="flex flex-col">
+  <label class="block mb-2 font-semibold text-gray-700">Orden *</label>
+
+  <p-select
+    [options]="orders"
+    formControlName="id_order"
+    optionLabel="label"
+    optionValue="value"
+    placeholder="Selecciona una orden"
+    class="w-full"
+    [ngClass]="{
+      'ng-invalid': form.get('id_order')?.invalid && form.get('id_order')?.touched
+    }"
+  >
+  </p-select>
+
+  <small class="text-red-500 mt-1" *ngIf="getFieldError('id_order')">
+    {{ getFieldError('id_order') }}
+  </small>
+
+</div>
+
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Metodo de pago *</label>
+          <input 
+            placeholder="Metodo de pago"
+            pInputText 
+            formControlName="method" 
+            class="w-full"
+            [class.ng-invalid]="form.get('method')?.invalid && form.get('method')?.touched"
+          />
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('method')">
+            {{ getFieldError('method') }}
+          </small>
+        </div>
+
+<!-- dasd -->
+
+        <!-- FECHA -->
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Fecha pago*</label>
+
+          <p-datepicker
+            placeholder="Selecciona una fecha de pago"
+            formControlName="payment_date"
+            class="w-full"
+            dateFormat="dd/mm/yy"
+            [showIcon]="true"
+            [class.ng-invalid]="form.get('payment_date')?.invalid && form.get('payment_date')?.touched"
+          ></p-datepicker>
+
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('payment_date')">
+            {{ getFieldError('payment_date') }}
+          </small>
+        </div>
+
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Monto a pagar *</label>
+          <input 
+            placeholder="Monto a pagar"
+            pInputText 
+            formControlName="amount" 
+            class="w-full"
+            [class.ng-invalid]="form.get('amount')?.invalid && form.get('amount')?.touched"
+          />
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('amount')">
+            {{ getFieldError('amount') }}
+          </small>
+        </div>
+
+
+        <!-- <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Contraseña *</label>
+          <input 
+            pInputText 
+            placeholder="Contraseña"
+            type="password" 
+            formControlName="password" 
+            class="w-full"
+            [class.ng-invalid]="form.get('password')?.invalid && form.get('password')?.touched"
+          />
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('password')">
+            {{ getFieldError('password') }}
+          </small>
+        </div> -->
+
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Estado *</label>
+          <p-select
+            formControlName="status"
+            [options]="statusOptions"
+            placeholder="Seleccionar estado"
+            class="w-full"
+          ></p-select>
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-8">
+        <div class="bg-gray-50 rounded-lg p-4 flex gap-4 items-center">
+          <button
+            pButton
+            type="submit"
+            class="p-button bg-blue-500 hover:bg-blue-600 text-white"
+            label="Guardar"
+            icon="pi pi-save"
+            [loading]="loading"
+            [disabled]="loading"
+          ></button>
+          <button
+            pButton
+            type="button"
+            class="p-button p-button-secondary"
+            label="Cancelar"
+            icon="pi pi-times"
+            (click)="cancelar()"
+            [disabled]="loading"
+          ></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<p-toast></p-toast>

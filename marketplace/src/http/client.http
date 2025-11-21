@@ -1,0 +1,95 @@
+// client.http
+import dotenv from "dotenv";
+
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYyOTM0NzMxLCJleHAiOjE3NjI5MzUzMzF9.zdiSL2Mfy68GrKprutIR3gAhErR4nJ9ef6ik2_E0_lc
+@baseUrl = http://localhost:4000
+
+### Peticiones sin TOKEN
+
+### Obtener todos los clientes 
+GET {{baseUrl}}/api/clientes
+
+
+### Obtener cliente por ID 
+GET {{baseUrl}}/api/clientes/1
+
+### Crear un nuevo cliente 
+POST {{baseUrl}}/api/clientes
+Content-Type: application/json
+
+{
+  "name": "juan sebasdtian",
+  "address": "Km 12",
+  "code": "1082843720",
+  "email": "jqm@gmail.com",
+  "password": "12345678",
+  "status": "ACTIVE"
+}
+
+
+### Actualizar un cliente 
+PATCH {{baseUrl}}/api/clientes/1
+Content-Type: application/json
+
+{
+  "name": "jaider Actualizado",
+  "address": "Calle 456",
+  "phone": "3007654321",
+  "email": "juan.perez@example.com",
+  "password": "654321",
+  "status": "ACTIVE"
+}
+
+
+
+### Eliminar un cliente físicamente 
+DELETE {{baseUrl}}/api/clientes/6
+
+
+
+### Eliminar un cliente lógicamente
+DELETE {{baseUrl}}/api/clientes/1/logic
+
+
+### ================== RUTAS CON AUTENTICACIÓN ==================
+
+### Obtener todos los clientes (CON token)
+GET {{baseUrl}}/api/ocul/Clientes
+Authorization: Bearer {{token}}
+
+### Obtener cliente por ID (CON token)
+GET {{baseUrl}}/api/ocul/Clientes/1
+Authorization: Bearer {{token}}
+
+### Crear un nuevo cliente (CON token)
+POST {{baseUrl}}/api/ocul/Clientes
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "María García",
+  "address": "Avenida Siempre Viva 742",
+  "code": "987654321",
+  "email": "maria.garcia@example.com",
+  "password": "securepassword123",
+  "status": "ACTIVE"
+}
+
+### Actualizar un cliente (CON token)
+PATCH {{baseUrl}}/api/ocul/Clientes/2
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Maríaa García Actualizada",
+  "address": "Nueva Dirección 123"
+}
+
+### Eliminar un cliente físicamente (CON token)
+DELETE {{baseUrl}}/api/ocul/Clientes/2
+Authorization: Bearer {{token}}
+
+### Eliminar un cliente lógicamente (CON token)
+DELETE {{baseUrl}}/api/ocul/Clientes/1/logic
+Authorization: Bearer {{token}}

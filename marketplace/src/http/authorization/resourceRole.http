@@ -1,0 +1,78 @@
+### resourceRole.http
+
+@baseUrl = http://localhost:4000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTc2MDA2MDU1NywiZXhwIjoxNzYwMDYxMTU3fQ.l9kxHGraKffDkcOLHMmaVa12iOQKdrhZHrNnP6wb6dA
+
+### ================== RUTAS SIN AUTENTICACIÓN ==================
+
+### Obtener todos los roles de recursos (SIN token)
+GET {{baseUrl}}/api/resourceRoles/public
+
+### Obtener rol de recurso por ID (SIN token)
+GET {{baseUrl}}/api/resourceRoles/public/1
+
+### Crear un nuevo rol de recurso (SIN token)
+POST {{baseUrl}}/api/resourceRoles/public
+Content-Type: application/json
+
+{
+  "resource_id": 23,
+  "role_id": 1,
+  "is_active": "ACTIVE"
+}
+
+### Actualizar un rol de recurso (SIN token)
+PATCH {{baseUrl}}/api/resourceRoles/public/1
+Content-Type: application/json
+
+{
+  "resource_id": 1,
+  "role_id": 2,
+  "is_active": "ACTIVE"
+}
+
+### Eliminar un rol de recurso físicamente (SIN token)
+DELETE {{baseUrl}}/api/resourceRoles/public/1
+
+### Eliminar un rol de recurso lógicamente (SIN token)
+DELETE {{baseUrl}}/api/resourceRoles/public/2/logic
+
+### ================== RUTAS CON AUTENTICACIÓN ==================
+
+### Obtener todos los roles de recursos (CON token)
+GET {{baseUrl}}/api/resourceRoles
+Authorization: Bearer {{token}}
+
+### Obtener rol de recurso por ID (CON token)
+GET {{baseUrl}}/api/resourceRoles/1
+Authorization: Bearer {{token}}
+
+### Crear un nuevo rol de recurso (CON token)
+POST {{baseUrl}}/api/resourceRoles
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "resource_id": 2,
+  "role_id": 1,
+  "is_active": "ACTIVE"
+}
+
+### Actualizar un rol de recurso (CON token)
+PATCH {{baseUrl}}/api/resourceRoles/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "resource_id": 2,
+  "role_id": 3,
+  "is_active": "ACTIVE"
+}
+
+### Eliminar un rol de recurso físicamente (CON token)
+DELETE {{baseUrl}}/api/resourceRoles/1
+Authorization: Bearer {{token}}
+
+### Eliminar un rol de recurso lógicamente (CON token)
+DELETE {{baseUrl}}/api/resourceRoles/1/logic
+Authorization: Bearer {{token}}

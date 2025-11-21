@@ -1,0 +1,78 @@
+### resource.http
+
+@baseUrl = http://localhost:4000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTc2MDA2MDU1NywiZXhwIjoxNzYwMDYxMTU3fQ.l9kxHGraKffDkcOLHMmaVa12iOQKdrhZHrNnP6wb6dA
+
+### ================== RUTAS SIN AUTENTICACIÓN ==================
+
+### Obtener todos los recursos (SIN token)
+GET {{baseUrl}}/api/resources/public
+
+### Obtener recurso por ID (SIN token)
+GET {{baseUrl}}/api/resources/public/1
+
+### Crear un nuevo recurso (SIN token)
+POST {{baseUrl}}/api/resources/public
+Content-Type: application/json
+
+{
+  "path": "/api/ocul/Tags",
+  "method": "POST",
+  "is_active": "ACTIVE"
+}
+
+### Actualizar un recurso (SIN token)
+PATCH {{baseUrl}}/api/resources/public/8
+Content-Type: application/json
+
+{
+  "path": "/api/ocul/Categories",
+  "method": "PATCH",
+  "is_active": "ACTIVE"
+}
+
+### Eliminar un recurso físicamente (SIN token)
+DELETE {{baseUrl}}/api/resources/public/3
+
+### Eliminar un recurso lógicamente (SIN token)
+DELETE {{baseUrl}}/api/resources/public/2/logic
+
+### ================== RUTAS CON AUTENTICACIÓN ==================
+
+### Obtener todos los recursos (CON token)
+GET {{baseUrl}}/api/resources
+Authorization: Bearer {{token}}
+
+### Obtener recurso por ID (CON token)
+GET {{baseUrl}}/api/resources/1
+Authorization: Bearer {{token}}
+
+### Crear un nuevo recurso (CON token)
+POST {{baseUrl}}/api/resources
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "path": "/api/ocul/Products",
+  "method": "GET",
+  "is_active": "ACTIVE"
+}
+
+### Actualizar un recurso (CON token)
+PATCH {{baseUrl}}/api/resources/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "path": "/api/users/:id",
+  "method": "PATCH",
+  "is_active": "ACTIVE"
+}
+
+### Eliminar un recurso físicamente (CON token)
+DELETE {{baseUrl}}/api/resources/1
+Authorization: Bearer {{token}}
+
+### Eliminar un recurso lógicamente (CON token)
+DELETE {{baseUrl}}/api/resources/1/logic
+Authorization: Bearer {{token}}

@@ -1,0 +1,42 @@
+### user.http
+
+@baseUrl = http://localhost:4000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+### Esto es solo como ejemplo academico, dado que este modelo lo debemos manejar posteriormente con Auth
+### ================== RUTAS SIN AUTENTICACIÓN ==================
+
+### Obtener todos los usuarios
+GET {{baseUrl}}/api/users
+
+### Crear usuario (usando el mismo endpoint)
+POST {{baseUrl}}/api/users
+Content-Type: application/json
+
+{
+  "username": "juan",
+  "email": "juan@gmail.com",
+  "password": "1234567",
+  "is_active": "ACTIVE",
+  "avatar": "avatar.jpg"
+}
+
+### Obtener usuario por ID
+GET {{baseUrl}}/api/users/1
+
+### Actualizar un usuario
+PATCH {{baseUrl}}/api/users/1
+Content-Type: application/json
+
+{
+  "username": "updateduser",
+  "avatar": "new_avatar.png"
+}
+
+### Eliminar un usuario físicamente
+DELETE {{baseUrl}}/api/users/1
+
+### Eliminar un usuario lógicamente
+DELETE {{baseUrl}}/api/users/1/logic
+
+### ================== RUTAS CON AUTENTICACIÓN ==================

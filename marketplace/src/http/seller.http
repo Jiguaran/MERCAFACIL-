@@ -1,0 +1,84 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYzMjU2MDkyLCJleHAiOjE3NjMyNTY2OTJ9.9-XoBXJq3ggG75sGX0Zrb6KSrrAfRfiOHbR5DOQ6ePI
+@baseUrl = http://localhost:4000
+
+### ================== RUTAS SIN AUTENTICACIÓN ==================
+
+### Obtener todos los vendedores
+GET {{baseUrl}}/api/sellers
+
+
+### Obtener vendedor por ID
+GET {{baseUrl}}/api/sellers/1
+
+### Crear un nuevo vendedor
+POST {{baseUrl}}/api/sellers
+Content-Type: application/json
+
+{
+  "name": "juan",
+  "email": "ventas@acmetech.com",
+  "phone": "3101234567",
+  "password": "password123",
+  "status": "ACTIVE"
+}
+
+
+### Actualizar un vendedor
+PATCH {{baseUrl}}/api/sellers/1
+Content-Type: application/json
+
+{
+  "name": "ACME Tech & Gadgets",
+  "phone": "3107654321"
+}
+
+
+
+### Eliminar un vendedor físicamente
+DELETE {{baseUrl}}/api/sellers/1
+
+
+
+### Eliminar un vendedor lógicamente
+DELETE {{baseUrl}}/api/sellers/1/logic
+
+
+### ================== RUTAS CON AUTENTICACIÓN ==================
+
+### Obtener todos los vendedores (CON token)
+GET {{baseUrl}}/api/ocul/Sellers
+Authorization: Bearer {{token}}
+
+### Obtener vendedor por ID (CON token)
+GET {{baseUrl}}/api/ocul/Sellers/1
+Authorization: Bearer {{token}}
+
+### Crear un nuevo vendedor (CON token)
+POST {{baseUrl}}/api/ocul/Sellers
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Global Imports",
+  "email": "contact@globalimports.co",
+  "phone": "3209876543",
+  "password": "strongpassword456",
+  "status": "ACTIVE"
+}
+
+### Actualizar un vendedor (CON token)
+PATCH {{baseUrl}}/api/ocul/Sellers/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "phone": "3215550102"
+}
+
+### Eliminar un vendedor físicamente (CON token)
+DELETE {{baseUrl}}/api/ocul/Sellers/1
+Authorization: Bearer {{token}}
+
+### Eliminar un vendedor lógicamente (CON token)
+DELETE {{baseUrl}}/api/ocul/Sellers/1/logic
+Authorization: Bearer {{token}}

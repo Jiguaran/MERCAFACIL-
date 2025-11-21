@@ -1,0 +1,91 @@
+<div class="min-h-screen flex items-center justify-center">
+  <div class="max-w-md w-full">
+    <p-card header="Registrar Usuario" class="shadow-lg">
+      <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-6">
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Username *</label>
+          <input 
+            pInputText 
+            type="text"
+            formControlName="username" 
+            class="w-full"
+            placeholder="Ingrese su username"
+            [class.ng-invalid]="form.get('username')?.invalid && form.get('username')?.touched"
+          />
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('username')">
+            {{ getFieldError('username') }}
+          </small>
+        </div>
+
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Email *</label>
+          <input 
+            pInputText 
+            type="email"
+            formControlName="email" 
+            class="w-full"
+            placeholder="ejemplo@correo.com"
+            [class.ng-invalid]="form.get('email')?.invalid && form.get('email')?.touched"
+          />
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('email')">
+            {{ getFieldError('email') }}
+          </small>
+        </div>
+
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Contraseña *</label>
+          <input 
+            pInputText 
+            type="password" 
+            formControlName="password" 
+            class="w-full"
+            placeholder="Ingrese su contraseña"
+            [class.ng-invalid]="form.get('password')?.invalid && form.get('password')?.touched"
+          />
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('password')">
+            {{ getFieldError('password') }}
+          </small>
+        </div>
+
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Confirmar Contraseña *</label>
+          <input 
+            pInputText 
+            type="password" 
+            formControlName="confirmPassword" 
+            class="w-full"
+            placeholder="Confirme su contraseña"
+            [class.ng-invalid]="form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched"
+          />
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('confirmPassword')">
+            {{ getFieldError('confirmPassword') }}
+          </small>
+        </div>
+
+        <div class="flex flex-col space-y-3 mt-6">
+          <button
+            pButton
+            type="submit"
+            class="p-button bg-blue-500 hover:bg-blue-600 text-white w-full"
+            label="Registrarse"
+            icon="pi pi-user-plus"
+            [loading]="loading"
+            [disabled]="loading"
+          ></button>
+
+          <button
+            pButton
+            type="button"
+            class="p-button p-button-text w-full"
+            label="¿Ya tienes cuenta? Iniciar Sesión"
+            icon="pi pi-sign-in"
+            (click)="goToLogin()"
+            [disabled]="loading"
+          ></button>
+        </div>
+      </form>
+    </p-card>
+  </div>
+</div>
+
+<p-toast></p-toast>

@@ -1,0 +1,78 @@
+### roleUser.http
+
+@baseUrl = http://localhost:4000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzYyOTA0MTE3LCJleHAiOjE3NjI5MDQ3MTd9.oA4r-u3syRJryC6iRVsQQ_OgyPrxhIAd3g_w1toE0ec
+
+### ================== RUTAS SIN AUTENTICACIÓN ==================
+
+### Obtener todos los roles de usuario (SIN token)
+GET {{baseUrl}}/api/roleUsers/public
+
+### Obtener rol de usuario por ID (SIN token)
+GET {{baseUrl}}/api/roleUsers/public/1
+
+### Crear un nuevo rol de usuario (SIN token)
+POST {{baseUrl}}/api/roleUsers/public
+Content-Type: application/json
+
+{
+  "role_id": 1,
+  "user_id": 1,
+  "is_active": "ACTIVE"
+}
+
+### Actualizar un rol de usuario (SIN token)
+PATCH {{baseUrl}}/api/roleUsers/public/1
+Content-Type: application/json
+
+{
+  "role_id": 2,
+  "user_id": 1,
+  "is_active": "ACTIVE"
+}
+
+### Eliminar un rol de usuario físicamente (SIN token)
+DELETE {{baseUrl}}/api/roleUsers/public/1
+
+### Eliminar un rol de usuario lógicamente (SIN token)
+DELETE {{baseUrl}}/api/roleUsers/public/2/logic
+
+### ================== RUTAS CON AUTENTICACIÓN ==================
+
+### Obtener todos los roles de usuario (CON token)
+GET {{baseUrl}}/api/roleUsers
+Authorization: Bearer {{token}}
+
+### Obtener rol de usuario por ID (CON token)
+GET {{baseUrl}}/api/roleUsers/1
+Authorization: Bearer {{token}}
+
+### Crear un nuevo rol de usuario (CON token)
+POST {{baseUrl}}/api/roleUsers
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "role_id": 1,
+  "user_id": 2,
+  "is_active": "ACTIVE"
+}
+
+### Actualizar un rol de usuario (CON token)
+PATCH {{baseUrl}}/api/roleUsers/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "role_id": 3,
+  "user_id": 2,
+  "is_active": "ACTIVE"
+}
+
+### Eliminar un rol de usuario físicamente (CON token)
+DELETE {{baseUrl}}/api/roleUsers/1
+Authorization: Bearer {{token}}
+
+### Eliminar un rol de usuario lógicamente (CON token)
+DELETE {{baseUrl}}/api/roleUsers/1/logic
+Authorization: Bearer {{token}}

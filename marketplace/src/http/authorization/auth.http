@@ -1,0 +1,29 @@
+### auth.http
+
+@baseUrl = http://localhost:4000
+# @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+### ================== RUTAS SIN AUTENTICACIÓN ==================
+
+### Registrar un nuevo usuario
+POST {{baseUrl}}/api/register
+Content-Type: application/json
+
+{
+  "username": "jquintero",
+  "email": "jq@gmail.com",
+  "password": "1234567",
+  "is_active": "ACTIVE",
+  "avatar": "avatar.jpg"
+}
+
+### Iniciar sesión
+POST {{baseUrl}}/api/login
+Content-Type: application/json
+
+{
+  "email": "jq@gmail.com",
+  "password": "1234567"
+}
+
+### ================== RUTAS CON AUTENTICACIÓN ==================

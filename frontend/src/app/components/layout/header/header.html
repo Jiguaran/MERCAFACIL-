@@ -1,0 +1,45 @@
+<header class="
+  w-full              /* Ocupa todo el ancho */
+  bg-gray-800         /* Fondo oscuro */
+  p-4                 /* Padding (16px) para espacio interior */
+  shadow-lg           /* Sombra sutil */
+  flex items-center   /* Flexbox para alinear elementos */
+">
+  
+  <div class="
+    text-2xl 
+    font-bold 
+    text-white 
+    tracking-wider 
+    uppercase 
+    mr-auto           /* CLAVE: Empuja los botones a la derecha */
+  ">
+    MERCAFACIL
+  </div>
+
+  <div class="flex justify-end items-center gap-2">
+
+    <button 
+      *ngIf="isLoggedIn"
+      type="button" 
+      class="text-[#1e1e1e] bg-[#6ee7b7] hover:bg-[#5cd6a4] rounded shadow hover:shadow-lg flex items-center justify-center w-10 h-10 transition-colors">
+      <p-overlaybadge value="2">
+        <i class="pi pi-bell text-2xl"></i>
+      </p-overlaybadge>
+    </button>
+
+    <button 
+      type="button"
+      class="text-[#1e1e1e] bg-[#6ee7b7] hover:bg-[#5cd6a4] rounded shadow hover:shadow-lg w-10 h-10 flex items-center justify-center transition-colors"
+      (click)="menu.toggle($event)">
+      <i class="pi pi-users text-xl"></i>
+    </button>
+  </div>
+  
+</header>
+
+<p-tieredmenu #menu [model]="items" [popup]="true" />
+
+
+
+

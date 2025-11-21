@@ -1,0 +1,78 @@
+<div class="card p-8">
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl font-bold">Gestión de Reseñas</h2>
+        <button
+            pButton
+            type="button"
+            class="p-button p-component bg-blue-500 hover:bg-blue-600 text-white"
+            icon="pi pi-plus"
+            label="Nueva Reseña"
+            [routerLink]="['/reviews/new']"
+        >
+        </button>
+    </div>
+
+    <p-table 
+        [value]="reviews" 
+        [loading]="loading"
+        stripedRows 
+        [tableStyle]="{'min-width': '50rem'}"
+        [paginator]="true"
+        [rows]="10"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    >
+        <ng-template #header>
+            <tr>
+                <th class="text-left">ID</th>
+                <th class="text-left">Producto</th>
+                <th class="text-left">Cliente</th>
+                <th class="text-left">Calificacion</th>
+                <th class="text-left">Comentario</th>
+                <th class="text-left">Estado</th>
+                <th class="text-center">Acciones</th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-review>
+            <tr>
+                <td>{{review.id}}</td>
+                <td>{{review.product.name}}</td>
+                <td>{{review.client.name}}</td>
+                <td>{{review.rating}}</td>
+                <td>{{review.comment}}</td>
+
+                <td>
+                    <span 
+                        class="px-2 py-1 rounded text-xs font-semibold"
+                        [class]="review.status === 'ACTIVE' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'"
+                    >
+                        {{review.status}}
+                    </span>
+                </td>
+                <td class="text-center">
+                    <div class="flex justify-left gap-2">
+                        <button
+                            pButton
+                            type="button"
+                            icon="pi pi-pencil"
+                            class="p-button-rounded p-button-text p-button-warning"
+                            [routerLink]="['/reviews/edit', review.id]"
+                            pTooltip="Editar"
+                        ></button>
+                        <button
+                            pButton
+                            type="button"
+                            icon="pi pi-trash"
+                            class="p-button-rounded p-button-text p-button-danger"
+                            (click)="deleteReview(review)"
+                            pTooltip="Eliminar"
+                        ></button>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-confirmDialog></p-confirmDialog>
+<p-toast></p-toast>

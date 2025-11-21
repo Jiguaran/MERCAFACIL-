@@ -1,0 +1,80 @@
+<div class="card p-8">
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl font-bold">Gestión de Detalles de Pedido</h2>
+        <button
+            pButton
+            type="button"
+            class="p-button p-component bg-blue-500 hover:bg-blue-600 text-white"
+            icon="pi pi-plus"
+            label="Nuevo Detalle de orden"
+            [routerLink]="['/orderDetails/new']"
+        >
+        </button>
+    </div>
+
+    <p-table 
+        [value]="orderDetails" 
+        [loading]="loading"
+        stripedRows 
+        [tableStyle]="{'min-width': '50rem'}"
+        [paginator]="true"
+        [rows]="10"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    >
+        <ng-template #header>
+            <tr>
+                <th class="text-left">ID</th>
+                <th class="text-left">orden</th>
+                <th class="text-left">Producto</th>
+                <th class="text-left">Cantidad</th>
+                <th class="text-left">Precio</th>
+                <!-- <th class="text-left">Estado De pedido</th> -->
+                <th class="text-left">Estado</th>
+                <th class="text-center">Acciones</th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-orderDetail>
+            <tr>
+                <td>{{orderDetail.id}}</td>
+                <td>{{orderDetail.id_order}}</td>
+                <td>{{orderDetail.product.name}}</td>
+                <td>{{orderDetail.quantity}}</td>
+                <td>{{orderDetail.price}}</td>
+                
+
+                <td>
+                    <span 
+                        class="px-2 py-1 rounded text-xs font-semibold"
+                        [class]="orderDetail.status === 'ACTIVE' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'"
+                    >
+                        {{orderDetail.status}}
+                    </span>
+                </td>
+                <td class="text-center">
+                    <div class="flex justify-left gap-2">
+                        <button
+                            pButton
+                            type="button"
+                            icon="pi pi-pencil"
+                            class="p-button-rounded p-button-text p-button-warning"
+                            [routerLink]="['/orderDetails/edit', orderDetail.id]"
+                            pTooltip="Editar"
+                        ></button>
+                        <button
+                            pButton
+                            type="button"
+                            icon="pi pi-trash"
+                            class="p-button-rounded p-button-text p-button-danger"
+                            (click)="deleteOrderDetail(orderDetail)"
+                            pTooltip="Eliminar"
+                        ></button>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-confirmDialog></p-confirmDialog>
+<p-toast></p-toast>

@@ -1,0 +1,51 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzU5OTQyNjMxLCJleHAiOjE3NTk5NDMyMzF9.EAhQ6CjPXiwsq-hbvUSn9EXKF4CXcD-Q9IYMYlcOh3k
+@baseUrl = http://localhost:4000
+
+### ================== RUTAS SIN AUTENTICACIÓN ==================
+
+### Obtener todas las asociaciones producto-tag
+GET {{baseUrl}}/api/productTags
+
+
+### Obtener una asociación por su clave compuesta (id_product/id_tag)
+GET {{baseUrl}}//api/productTags/1
+
+### Crear una nueva asociación producto-tag
+POST {{baseUrl}}/api/productTags
+Content-Type: application/json
+
+{
+  "id_product": 1,
+  "id_tag": 1,
+  "status": "ACTIVE"
+}
+
+
+### Eliminar una asociación físicamente
+DELETE {{baseUrl}}//api/productTags/1
+
+
+### ================== RUTAS CON AUTENTICACIÓN ==================
+
+### Obtener todas las asociaciones producto-tag (CON token)
+GET {{baseUrl}}/api/ocul/ProductTags
+Authorization: Bearer {{token}}
+
+### Obtener una asociación por ID (CON token)
+GET {{baseUrl}}/api/ocul/ProductTags/1
+Authorization: Bearer {{token}}
+
+### Crear una nueva asociación producto-tag (CON token)
+POST {{baseUrl}}/api/ocul/ProductTags
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "id_product": 2,
+  "id_tag": 3,
+  "status": "ACTIVE"
+}
+
+### Eliminar una asociación físicamente (CON token)
+DELETE {{baseUrl}}/api/ocul/ProductTags/1
+Authorization: Bearer {{token}}

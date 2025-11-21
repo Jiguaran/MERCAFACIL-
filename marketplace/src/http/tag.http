@@ -1,0 +1,77 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzU5OTQyNjMxLCJleHAiOjE3NTk5NDMyMzF9.EAhQ6CjPXiwsq-hbvUSn9EXKF4CXcD-Q9IYMYlcOh3k
+@baseUrl = http://localhost:4000
+
+### ================== RUTAS SIN AUTENTICACIÓN ==================
+
+### Obtener todos los tags
+GET {{baseUrl}}/api/tags
+
+
+### Obtener tag por ID
+GET {{baseUrl}}/api/tags/1
+
+### Crear un nuevo tag
+POST {{baseUrl}}/api/tags
+Content-Type: application/json
+
+{
+  "name": "Electrónica",
+  "status": "ACTIVE"
+}
+
+
+### Actualizar un tag
+PATCH {{baseUrl}}/api/tags/1
+Content-Type: application/json
+
+{
+  "name": "Tecnología y Gadgets"
+}
+
+
+
+### Eliminar un tag físicamente
+DELETE {{baseUrl}}/api/tags/1
+
+
+
+### Eliminar un tag lógicamente
+DELETE {{baseUrl}}/api/tags/1/logic
+
+
+### ================== RUTAS CON AUTENTICACIÓN ==================
+
+### Obtener todos los tags (CON token)
+GET {{baseUrl}}/api/ocul/Tags
+Authorization: Bearer {{token}}
+
+### Obtener tag por ID (CON token)
+GET {{baseUrl}}/api/ocul/Tags/1
+Authorization: Bearer {{token}}
+
+### Crear un nuevo tag (CON token)
+POST {{baseUrl}}/api/ocul/Tags
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Hogar",
+  "status": "ACTIVE"
+}
+
+### Actualizar un tag (CON token)
+PATCH {{baseUrl}}/api/ocul/Tags/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Hogar y Cocina"
+}
+
+### Eliminar un tag físicamente (CON token)
+DELETE {{baseUrl}}/api/ocul/Tags/1
+Authorization: Bearer {{token}}
+
+### Eliminar un tag lógicamente (CON token)
+DELETE {{baseUrl}}/api/ocul/Tags/1/logic
+Authorization: Bearer {{token}}

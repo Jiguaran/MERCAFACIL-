@@ -1,0 +1,32 @@
+<!-- <body class="m-0 p-0 flex flex-col min-h-screen font-sans bg-[#1e1e1e] text-[#f1f1f1]">
+  <app-header class="border border-gray-700 p-4"></app-header>
+
+  <div class="flex flex-1">
+    <aside class="w-64 border border-gray-700 p-4">
+      <app-aside></app-aside>
+    </aside>
+
+    <main class="flex-1 border border-gray-700 p-4">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <app-footer class="border border-gray-700 p-3"></app-footer>
+</body>
+ -->
+
+<body class="m-0 flex flex-col min-h-screen font-sans bg-[#1e1e1e] text-[#f1f1f1]">
+    
+    <app-header class="border border-gray-700"></app-header> 
+
+    <div class="flex flex-1 w-full"> 
+        
+        <aside class="w-64 border border-gray-700 p-4"> <app-aside></app-aside> 
+        </aside>
+
+        <main class="flex-1 border border-gray-700 p-4"> <router-outlet></router-outlet>
+        </main>
+    </div>
+
+    <app-footer class="border border-gray-700 p-3"></app-footer>
+</body>

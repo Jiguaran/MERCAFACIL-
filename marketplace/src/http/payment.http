@@ -1,0 +1,75 @@
+@baseUrl = http://localhost:4000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYzNDQ2ODIxLCJleHAiOjE3NjM0NDc0MjF9.QoMg07GKU69WW_vCOA8KQARQa8uwwyOQqUcPbWEoGe8
+
+
+### Obtener todos los pagos (SIN token)
+GET {{baseUrl}}/api/payments
+
+### Obtener pago por ID (SIN token)
+GET {{baseUrl}}/api/payments/1
+
+### Crear un pago (SIN token)
+POST {{baseUrl}}/api/payments
+Content-Type: application/json
+
+{
+  "id_order": 7,
+  "method": "PSE",
+  "amount": 250000,
+  "status": "ACTIVE"
+}
+
+### Actualizar un pago (SIN token)
+PATCH {{baseUrl}}/api/payments/1
+Content-Type: application/json
+
+{
+  "method": "PayPal"
+}
+
+### Eliminar un pago lógicamente (SIN token)
+DELETE {{baseUrl}}/api/payments/1/logic
+
+### Eliminar un pago físicamente (SIN token)
+    DELETE {{baseUrl}}/api/payments/1
+
+
+
+### ================== RUTAS con AUTENTICACIÓN ==================
+
+### Obtener todos los pagos
+GET {{baseUrl}}/api/ocul/Payments
+Authorization: Bearer {{token}}
+
+### Obtener pago por ID
+GET {{baseUrl}}/api/ocul/Payments/3
+Authorization: Bearer {{token}}
+
+### Crear un pago
+POST {{baseUrl}}/api/ocul/Payments
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "id_order": 7,
+  "method": "Credit Card",
+  "amount": 119000,
+  "status": "ACTIVE"
+}
+
+### Actualizar un pago
+PATCH {{baseUrl}}/api/ocul/Payments/4
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "method": "Cash"
+}
+
+### Eliminar un pago lógicamente
+DELETE {{baseUrl}}/api/ocul/Payments/1/logic
+Authorization: Bearer {{token}}
+
+### Eliminar un pago físicamente
+DELETE {{baseUrl}}/api/ocul/Payments/1
+Authorization: Bearer {{token}}

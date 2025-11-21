@@ -1,0 +1,90 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYzMzU3NDY2LCJleHAiOjE3NjMzNTgwNjZ9.lEbPU2_8pcOzRHVzyTVccpEpmWnX6HHvYTMj93EHf6c
+@baseUrl = http://localhost:4000
+
+### ================== RUTAS SIN AUTENTICACIÓN ==================
+
+### Obtener todos los detalles de órdenes
+GET {{baseUrl}}/api/orderDetails
+
+
+### Obtener un detalle de orden por su clave compuesta
+GET {{baseUrl}}/api/orderDetails/1/1
+
+### Crear un nuevo detalle de orden
+POST {{baseUrl}}/api/orderDetails
+Content-Type: application/json
+
+{
+  "id_order": 7,
+  "id_product": 2,
+  "quantity": 1,
+  "price": 3111225.50,
+  "status": "ACTIVE"
+}
+
+
+### Actualizar un detalle de orden
+PATCH {{baseUrl}}/api/orderDetails/1
+Content-Type: application/json
+
+{
+  "quantity": 3
+}
+
+
+
+### Eliminar un detalle de orden físicamente
+DELETE {{baseUrl}}/api/orderDetails/1
+
+
+
+### Eliminar un detalle de orden lógicamente
+DELETE {{baseUrl}}/api/orderDetails/1/logic
+
+
+### ================== RUTAS CON AUTENTICACIÓN ==================
+
+### Obtener todos los detalles de órdenes (CON token)
+GET {{baseUrl}}/api/ocul/OrderDetails
+Authorization: Bearer {{token}}
+
+### Obtener un detalle de orden por ID (CON token)
+GET {{baseUrl}}/api/ocul/OrderDetails/1
+Authorization: Bearer {{token}}
+
+### Crear un nuevo detalle de orden (CON token)
+POST {{baseUrl}}/api/ocul/OrderDetails
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "id_order": 2,
+  "id_product": 3,
+  "quantity": 5,
+  "price": 99.99,
+  "status": "ACTIVE"
+}
+
+### Actualizar un detalle de orden (CON token)
+PATCH {{baseUrl}}/api/ocul/OrderDetails/8
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "quantity": 10,
+  "price": 120.50
+}
+
+### Eliminar un detalle de orden físicamente (CON token)
+DELETE {{baseUrl}}/api/ocul/OrderDetails/1
+Authorization: Bearer {{token}}
+
+### Eliminar un detalle de orden lógicamente (CON token)
+DELETE {{baseUrl}}/api/ocul/OrderDetails/1/logic
+Authorization: Bearer {{token}}
+
+
+
+
+
+

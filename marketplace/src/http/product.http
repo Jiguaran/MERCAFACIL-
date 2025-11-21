@@ -1,0 +1,86 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzU5OTQyNjMxLCJleHAiOjE3NTk5NDMyMzF9.EAhQ6CjPXiwsq-hbvUSn9EXKF4CXcD-Q9IYMYlcOh3k
+@baseUrl = http://localhost:4000
+
+### ================== RUTAS SIN AUTENTICACIÓN ==================
+
+### Obtener todos los productos
+GET {{baseUrl}}/api/products
+
+
+### Obtener producto por ID
+GET {{baseUrl}}/api/products/2
+
+### Crear un nuevo producto
+POST {{baseUrl}}/api/products
+Content-Type: application/json
+
+{
+  "name": "Laptop Pro X",
+  "description": "Una laptop potente para profesionales creativos.",
+  "price": 1499.99,
+  "id_seller": 2,
+  "id_category": 1,
+  "status": "ACTIVE"
+}
+
+
+### Actualizar un producto
+PATCH {{baseUrl}}/api/products/1
+Content-Type: application/json
+
+{
+  "price": 1450.00,
+  "description": "Una laptop aún más potente con pantalla mejorada."
+}
+
+
+
+### Eliminar un producto físicamente
+DELETE {{baseUrl}}/api/products/1
+
+
+
+### Eliminar un producto lógicamente
+DELETE {{baseUrl}}/api/products/1/logic
+
+
+### ================== RUTAS CON AUTENTICACIÓN ==================
+
+### Obtener todos los productos (CON token)
+GET {{baseUrl}}/api/ocul/Products
+Authorization: Bearer {{token}}
+
+### Obtener producto por ID (CON token)
+GET {{baseUrl}}/api/ocul/Products/1
+Authorization: Bearer {{token}}
+
+### Crear un nuevo producto (CON token)
+POST {{baseUrl}}/api/ocul/Products
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Smartphone Z",
+  "description": "El último modelo con cámara de alta resolución.",
+  "price": 899.50,
+  "id_seller": 2,
+  "id_category": 2,
+  "status": "ACTIVE"
+}
+
+### Actualizar un producto (CON token)
+PATCH {{baseUrl}}/api/ocul/Products/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "price": 1550.00
+}
+
+### Eliminar un producto físicamente (CON token)
+DELETE {{baseUrl}}/api/ocul/Products/1
+Authorization: Bearer {{token}}
+
+### Eliminar un producto lógicamente (CON token)
+DELETE {{baseUrl}}/api/ocul/Products/1/logic
+Authorization: Bearer {{token}}

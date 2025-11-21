@@ -1,0 +1,76 @@
+@baseUrl = http://localhost:4000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYzNDQ4MTExLCJleHAiOjE3NjM0NDg3MTF9.R0D6F2qHIygSfZlhZ3rVKRG6Je--yf1jVf5irJ-TXr4
+
+### ================== RUTAS PÚBLICAS (SIN token) ==================
+
+### Obtener todas las reseñas
+GET {{baseUrl}}/api/reviews
+
+### Obtener reseña por ID
+GET {{baseUrl}}/api/reviews/1
+
+### Crear una reseña
+POST {{baseUrl}}/api/reviews
+Content-Type: application/json
+
+{
+  "id_product": 2,
+  "id_client": 1,
+  "rating": 5,
+  "comment": "¡Producto excelente, muy recomendado!",
+  "status": "ACTIVE"
+}
+
+### Actualizar una reseña
+PATCH {{baseUrl}}/api/reviews/1
+Content-Type: application/json
+
+{
+  "comment": "Actualización: Después de un mes, sigue funcionando perfecto."
+}
+
+### Eliminar una reseña lógicamente
+DELETE {{baseUrl}}/api/reviews/1/logic
+
+### Eliminar una reseña físicamente
+DELETE {{baseUrl}}/api/reviews/1
+
+### ================== RUTAS con AUTENTICACIÓN ==================
+
+### Obtener todas las reseñas (Auth)
+GET {{baseUrl}}/api/ocul/Reviews
+Authorization: Bearer {{token}}
+
+### Obtener reseña por ID (Auth)
+GET {{baseUrl}}/api/ocul/Reviews/1
+Authorization: Bearer {{token}}
+
+### Crear una reseña (Auth)
+POST {{baseUrl}}/api/ocul/Reviews
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "id_product": 2,
+  "id_client": 1,
+  "rating": 4,
+  "comment": "Buen producto, aunque la entrega tardó un poco."
+}
+
+### Actualizar una reseña (Auth)
+PATCH {{baseUrl}}/api/ocul/Reviews/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "rating": 3,
+  "comment": "Le bajo la calificación, empezó a fallar."
+}
+
+### Eliminar una reseña lógicamente (Auth)
+DELETE {{baseUrl}}/api/ocul/Reviews/1/logic
+Authorization: Bearer {{token}}
+
+### Eliminar una reseña físicamente (Auth)
+DELETE {{baseUrl}}/api/ocul/Reviews/1
+Authorization: Bearer {{token}}
