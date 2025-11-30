@@ -1,75 +1,98 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { PanelMenu } from 'primeng/panelmenu';
+import { PanelMenuModule } from 'primeng/panelmenu';
 
 @Component({
   selector: 'app-aside',
   standalone: true,
-  imports: [PanelMenu],
-  templateUrl: './aside.html',
-  styleUrl: './aside.css'
+  imports: [PanelMenuModule],
+  templateUrl: './aside.html'
 })
-export class Aside {
-items: MenuItem[] | undefined;
-ngOnInit() {
-        this.items = [
-            {
-        label: 'Clientes',
-        icon: 'pi pi-fw pi-users',
-        routerLink: '/clients',
-      },
-      {
-        label: 'Vendedores',
-        icon: 'pi pi-fw pi-qrcode',
-        routerLink: '/sellers'
-      },
-      {
-        label: 'Productos',
-        icon: 'pi pi-fw pi-shopping-bag',
-        routerLink: '/products'
-      },
-      {
-        label: 'categorias',
-        icon: 'pi pi-fw pi-shopping-cart',
-        routerLink: '/categories'
-      },
-      {
-        label : 'Etiquetas',
-        icon : 'pi pi-fw pi-chart-bar',
-        routerLink: '/tags'
-      },
-      {
-        label : 'Etiquetas de productos',
-        icon : 'pi pi-fw pi-chart-bar',
-        routerLink: '/productTags'
-      },
-      {
-        label : 'Pedido',
-        icon : 'pi pi-fw pi-chart-bar',
-        routerLink: '/orders'
-      },
+export class Aside implements OnInit {
+  items: MenuItem[] | undefined;
 
+  ngOnInit() {
+    this.items = [
       {
-        label : 'Detalles de pedidos',
-        icon : 'pi pi-fw pi-chart-bar',
-        routerLink: '/orderDetails'
+        label: 'Dashboard',
+        icon: 'pi pi-home',
+        routerLink: '/dashboard'
       },
       {
-        label : 'Envios',
-        icon : 'pi pi-fw pi-chart-bar',
-        routerLink: '/shipments'
+        label: 'Gestión Comercial',
+        items: [
+            {
+                label: 'Clientes',
+                icon: 'pi pi-users',
+                routerLink: '/clients',
+            },
+            {
+                label: 'Vendedores',
+                icon: 'pi pi-briefcase', 
+                routerLink: '/sellers'
+            }
+        ]
       },
       {
-        label : 'Pagos',
-        icon : 'pi pi-fw pi-chart-bar',
-        routerLink: '/payments'
+        label: 'Inventario',
+        items: [
+            {
+                label: 'Productos',
+                icon: 'pi pi-box',
+                routerLink: '/products'
+            },
+            {
+                label: 'Categorías',
+                icon: 'pi pi-th-large', 
+                routerLink: '/categories'
+            },
+            {
+                label: 'Etiquetas',
+                icon: 'pi pi-hashtag', 
+                routerLink: '/tags'
+            },
+            {
+                label: 'Etiquetas Producto',
+                icon: 'pi pi-link', 
+                routerLink: '/productTags'
+            }
+        ]
       },
       {
-        label : 'Reseñas',
-        icon : 'pi pi-fw pi-chart-bar',
-        routerLink: '/reviews'
+        label: 'Ventas y Distribución',
+        items: [
+            {
+                label: 'Pedidos',
+                icon: 'pi pi-shopping-cart', 
+                routerLink: '/orders'
+            },
+            {
+                label: 'Detalles Pedidos',
+                icon: 'pi pi-list',
+                routerLink: '/orderDetails'
+            },
+            {
+                label: 'Envíos',
+                icon: 'pi pi-truck',  
+                routerLink: '/shipments'
+            }
+        ]
+      },
+      {
+        label: 'Finanzas y Feedback',
+        items: [
+            {
+                label: 'Pagos',
+                icon: 'pi pi-wallet',  
+                routerLink: '/payments'
+            },
+            {
+                label: 'Reseñas',
+                icon: 'pi pi-star',  
+                routerLink: '/reviews'
+            }
+        ]
       }
-    
-        ];
-    }
+    ];
+  }
 }

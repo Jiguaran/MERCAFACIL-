@@ -1,47 +1,33 @@
-<!-- <body class="m-0 p-0 flex flex-col min-h-screen font-sans bg-[#1e1e1e] text-[#f1f1f1]">
-  <app-header class="border border-gray-700 p-4"></app-header>
-
-  <div class="flex flex-1">
-    <aside class="w-64 border border-gray-700 p-4">
-      <app-aside></app-aside>
-    </aside>
-
-    <main class="flex-1 border border-gray-700 p-4">
-      <router-outlet></router-outlet>
-    </main>
-  </div>
-
-  <app-footer class="border border-gray-700 p-3"></app-footer>
-</body>
- -->
-
-<body class="m-0 flex flex-col min-h-screen font-sans bg-[#1e1e1e] text-[#f1f1f1]">
+<body class="m-0 flex flex-col min-h-screen font-sans bg-[#121212] text-[#f1f1f1]">
     
     @if (authService.authState$ | async) {
-        <app-header class="border border-gray-700"></app-header> 
+        <div class="sticky top-0 z-50 shadow-md">
+            <app-header></app-header> 
+        </div>
     }
 
-    <div class="flex flex-1 w-full"> 
+    <div class="flex flex-1 w-full overflow-hidden"> 
         
         @if (authService.authState$ | async) {
-            <aside class="w-64 border border-gray-700 p-4"> 
-                <app-aside></app-aside> 
+            <aside class="w-64 bg-[#1a1a1a] hidden md:block overflow-y-auto"> 
+                <div class="p-4">
+                    <app-aside></app-aside> 
+                </div>
             </aside>
         }
 
-        <main class="flex-1 w-full flex flex-col"
-              [class.border]="authService.authState$ | async"
-              [class.border-gray-700]="authService.authState$ | async"
-              [class.p-4]="authService.authState$ | async">
+        <main class="flex-1 w-full flex flex-col overflow-y-auto bg-[#121212] p-4 md:p-8 relative">
+             <div class="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-[#6ee7b7]/5 to-transparent pointer-events-none"></div>
              
-             <router-outlet></router-outlet>
-
+             <div class="relative z-10">
+                <router-outlet></router-outlet>
+             </div>
         </main>
         
     </div>
 
     @if (authService.authState$ | async) {
-        <app-footer class="border border-gray-700 p-3"></app-footer>
+        <app-footer class="bg-[#1a1a1a] text-xs text-gray-500 p-3 text-center"></app-footer>
     }
 
 </body>

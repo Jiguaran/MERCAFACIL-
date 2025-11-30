@@ -74,12 +74,19 @@ import { Register } from './components/auth/register/register';
 // Auth Guard
 import { AuthGuard } from './guards/authguard';
 
+// Dashboard component
+import { Dashboard } from './components/dashboard/dashboard';
 
 export const routes: Routes = [
     { 
         path: '', 
-        redirectTo: '/', 
+        redirectTo: '/dashboard', // CORREGIDO: Redirige al dashboard, no a la raíz '/'
         pathMatch: 'full' 
+    },
+    {
+        path: 'dashboard',       // NUEVA RUTA: Aquí registramos el componente
+        component: Dashboard,
+        canActivate: [AuthGuard] // Protegido por login
     },
     {
         path: "login",
@@ -314,10 +321,4 @@ export const routes: Routes = [
         redirectTo: "login",
         pathMatch: "full"
     }
-
 ];
-
-
-
-
-

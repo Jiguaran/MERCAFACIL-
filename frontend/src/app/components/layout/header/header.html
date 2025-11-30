@@ -1,45 +1,72 @@
 <header class="
-  w-full              /* Ocupa todo el ancho */
-  bg-gray-800         /* Fondo oscuro */
-  p-4                 /* Padding (16px) para espacio interior */
-  shadow-lg           /* Sombra sutil */
-  flex items-center   /* Flexbox para alinear elementos */
+  w-full
+  h-16                      /* Altura fija para mantener orden */
+  bg-[#1a1a1a]              /* Mismo fondo que el Sidebar */
+  border-b border-gray-800  /* Línea divisoria sutil */
+  px-6                      /* Más aire a los lados */
+  flex items-center 
+  justify-between           /* Separa logo a la izq y botones a la der */
+  sticky top-0 z-50         /* Se mantiene visible al bajar */
+  shadow-md
 ">
-  
-  <div class="
-    text-2xl 
-    font-bold 
-    text-white 
-    tracking-wider 
-    uppercase 
-    mr-auto           /* CLAVE: Empuja los botones a la derecha */
-  ">
-    MERCAFACIL
+
+  <div class="flex items-center gap-3 cursor-pointer group select-none">
+    <div class="
+      w-8 h-8 
+      rounded-lg 
+      bg-gradient-to-br from-[#6ee7b7] to-emerald-600 
+      flex items-center justify-center 
+      text-[#1e1e1e] font-black text-lg 
+      shadow-[0_0_10px_rgba(110,231,183,0.3)]
+      group-hover:scale-110 transition-transform duration-300
+    ">
+      M
+    </div>
+    
+    <div class="text-xl font-bold text-gray-100 tracking-tight group-hover:text-[#6ee7b7] transition-colors duration-300">
+      MERCAFACIL
+    </div>
   </div>
 
-  <div class="flex justify-end items-center gap-2">
+  <div class="flex items-center gap-3">
 
     <button 
       *ngIf="isLoggedIn"
       type="button" 
-      class="text-[#1e1e1e] bg-[#6ee7b7] hover:bg-[#5cd6a4] rounded shadow hover:shadow-lg flex items-center justify-center w-10 h-10 transition-colors">
-      <p-overlaybadge value="2">
-        <i class="pi pi-bell text-2xl"></i>
-      </p-overlaybadge>
+      class="
+        relative w-10 h-10 rounded-full 
+        bg-[#2a2a2a] text-gray-400 
+        hover:bg-[#6ee7b7] hover:text-[#1e1e1e] hover:shadow-[0_0_15px_rgba(110,231,183,0.4)]
+        flex items-center justify-center 
+        transition-all duration-300
+      ">
+      
+      <span class="absolute top-0 right-0 h-3 w-3">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+      </span>
+
+      <i class="pi pi-bell text-lg"></i>
     </button>
 
     <button 
       type="button"
-      class="text-[#1e1e1e] bg-[#6ee7b7] hover:bg-[#5cd6a4] rounded shadow hover:shadow-lg w-10 h-10 flex items-center justify-center transition-colors"
-      (click)="menu.toggle($event)">
-      <i class="pi pi-users text-xl"></i>
+      (click)="menu.toggle($event)"
+      class="
+        w-10 h-10 rounded-full 
+        bg-[#2a2a2a] text-[#6ee7b7] 
+        hover:bg-[#6ee7b7] hover:text-[#1e1e1e] hover:shadow-[0_0_15px_rgba(110,231,183,0.4)]
+        border border-gray-800 hover:border-[#6ee7b7]
+        flex items-center justify-center 
+        transition-all duration-300
+      ">
+      <i class="pi pi-user text-lg"></i>
     </button>
   </div>
   
 </header>
 
 <p-tieredmenu #menu [model]="items" [popup]="true" />
-
 
 
 

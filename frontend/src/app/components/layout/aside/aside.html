@@ -1,6 +1,105 @@
-<div class="card flex justify-center">
+<div class="h-full w-full py-2">
+
+  
+
+  <div class="px-4 mb-4">
+
+    <p class="text-xs font-bold text-gray-500 uppercase tracking-widest">Navegación</p>
+
+  </div>
+
+
+
   <p-panelmenu 
+
     [model]="items" 
-    class="w-full md:w-80 [&_.p-menuitem-link:hover]:bg-[#6ee7b7] [&_.p-menuitem-link:hover]:text-black transition-all duration-200"
+
+    [multiple]="false"
+
+    styleClass="w-full !border-none"
+
+    class="
+
+      w-full
+
+      
+
+      /* --- PERSONALIZACIÓN PROFUNDA DE PRIMENG (Dark Mode) --- */
+
+      
+
+      /* 1. Cabeceras del Menú (Categorías principales) */
+
+      [&_.p-panelmenu-header-content]:bg-transparent 
+
+      [&_.p-panelmenu-header-content]:border-none 
+
+      [&_.p-panelmenu-header-content]:transition-all
+
+      
+
+      /* Texto del Header */
+
+      [&_.p-panelmenu-header-action]:text-gray-300 
+
+      [&_.p-panelmenu-header-action]:font-bold
+
+      [&_.p-panelmenu-header-action]:py-3
+
+      
+
+      /* Hover en Header */
+
+      [&_.p-panelmenu-header-action:hover]:bg-[#2a2a2a] 
+
+      [&_.p-panelmenu-header-action:hover]:text-[#6ee7b7]
+
+      
+
+      /* 2. Sub-ítems (Enlaces internos) */
+
+      [&_.p-menuitem-content]:bg-transparent
+
+      [&_.p-toggleable-content]:bg-transparent
+
+      
+
+      /* Enlaces */
+
+      [&_.p-menuitem-link]:py-3 
+
+      [&_.p-menuitem-link]:pl-8 /* Indentación para jerarquía */
+
+      [&_.p-menuitem-link]:text-gray-400
+
+      [&_.p-menuitem-link]:transition-colors
+
+      
+
+      /* Hover en Enlaces */
+
+      [&_.p-menuitem-link:hover]:bg-[#2a2a2a]
+
+      [&_.p-menuitem-link:hover]:text-white
+
+      
+
+      /* 3. Iconos */
+
+      [&_.p-menuitem-icon]:text-[#6ee7b7] /* Iconos siempre en verde menta */
+
+      [&_.p-menuitem-icon]:text-lg
+
+      [&_.p-menuitem-icon]:mr-3
+
+      
+
+      /* 4. Flechas del acordeón */
+
+      [&_.p-submenu-icon]:text-gray-500
+
+    "
+
   />
+
 </div>

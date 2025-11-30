@@ -1,77 +1,146 @@
-<div class="card p-8">
-    <div class="flex justify-between items-center mb-4">
-        <h2 class="text-2xl font-bold">Gestión de Pedidos</h2>
+<div class="fade-in-animation">
+
+    <div class="flex justify-between items-center mb-6 px-2">
+        <div>
+            <h2 class="text-3xl font-bold text-white tracking-tight">Gestión de Pedidos</h2>
+            <p class="text-gray-400 text-sm mt-1">Administra las compras de tus clientes</p>
+        </div>
+        
         <button
             pButton
             type="button"
-            class="p-button p-component bg-blue-500 hover:bg-blue-600 text-white"
-            icon="pi pi-plus"
-            label="Nuevo pedido"
-            [routerLink]="['/orders/new']"
-        >
+            class="
+                bg-[#6ee7b7] hover:bg-[#5cd6a4] 
+                text-[#1e1e1e] font-bold 
+                border-none rounded-full px-6 py-3 
+                shadow-[0_0_15px_rgba(110,231,183,0.3)] hover:shadow-[0_0_20px_rgba(110,231,183,0.5)]
+                transition-all duration-300 transform hover:-translate-y-1
+                flex items-center gap-2
+            "
+            [routerLink]="['/orders/new']">
+            <i class="pi pi-shopping-cart text-sm font-black"></i>
+            <span>Nuevo Pedido</span>
         </button>
     </div>
 
-    <p-table 
-        [value]="orders" 
-        [loading]="loading"
-        stripedRows 
-        [tableStyle]="{'min-width': '50rem'}"
-        [paginator]="true"
-        [rows]="10"
-        [showCurrentPageReport]="true"
-        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-    >
-        <ng-template #header>
-            <tr>
-                <th class="text-left">ID</th>
-                <th class="text-left">cliente</th>
-                <th class="text-left">Fecha</th>
-                <th class="text-left">Total</th>
-                <th class="text-left">Estado pedido</th>
-                <th class="text-left">Estado</th>
-                <th class="text-center">Acciones</th>
-            </tr>
-        </ng-template>
-        <ng-template #body let-order>
-            <tr>
-                <td>{{order.id}}</td>
-                <td>{{order.client.name}}</td>
-                <td>{{order.fecha| date:'dd/MM/yyyy'}}</td>
-                <td>{{order.total}}</td>
-                <td>{{order.status}}</td>
-                <td>
-                    <span 
-                        class="px-2 py-1 rounded text-xs font-semibold"
-                        [class]="order.statuss === 'ACTIVE' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'"
-                    >
-                        {{order.statuss}}
-                    </span>
-                </td>
-                <td class="text-center">
-                    <div class="flex justify-let gap-2">
-                        <button
-                            pButton
-                            type="button"
-                            icon="pi pi-pencil"
-                            class="p-button-rounded p-button-text p-button-warning"
-                            [routerLink]="['/orders/edit', order.id]"
-                            pTooltip="Editar"
-                        ></button>
-                        <button
-                            pButton
-                            type="button"
-                            icon="pi pi-trash"
-                            class="p-button-rounded p-button-text p-button-danger"
-                            (click)="deleteOrder(order)"
-                            pTooltip="Eliminar"
-                        ></button>
-                    </div>
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
+    <div class="bg-[#1a1a1a] border border-gray-800 rounded-2xl shadow-2xl overflow-hidden">
+        
+        <p-table 
+            [value]="orders" 
+            [loading]="loading"
+            [tableStyle]="{'min-width': '60rem'}"
+            [paginator]="true"
+            [rows]="10"
+            [showCurrentPageReport]="true"
+            currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} pedidos"
+            styleClass="p-datatable-sm custom-dark-table"
+        >
+            <ng-template pTemplate="header">
+                <tr class="bg-[#2a2a2a] border-b border-gray-700">
+                    <th class="text-gray-300 font-semibold p-4 rounded-tl-lg w-24">ID</th>
+                    <th class="text-gray-300 font-semibold p-4">Cliente</th>
+                    <th class="text-gray-300 font-semibold p-4">Fecha</th>
+                    <th class="text-gray-300 font-semibold p-4">Total</th>
+                    <th class="text-gray-300 font-semibold p-4">Estado Pedido</th>
+                    <th class="text-gray-300 font-semibold p-4">Estado Registro</th>
+                    <th class="text-gray-300 font-semibold p-4 text-center rounded-tr-lg">Acciones</th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-order>
+                <tr class="
+                    border-b border-gray-800 
+                    text-gray-300 
+                    hover:bg-[#252525] hover:text-white 
+                    transition-colors duration-200
+                ">
+                    <td class="p-4 font-mono text-sm text-gray-500">{{order.id}}</td>
+                    
+                    <td class="p-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-blue-900/20 text-blue-400 border border-blue-500/20 flex items-center justify-center">
+                                <i class="pi pi-user text-xs"></i>
+                            </div>
+                            <span class="font-medium text-white">{{order.client.name}}</span>
+                        </div>
+                    </td>
+                    
+                    <td class="p-4 text-gray-400 font-mono text-sm">
+                        <i class="pi pi-calendar mr-2 text-xs opacity-50"></i>
+                        {{order.fecha | date:'dd/MM/yyyy'}}
+                    </td>
+
+                    <td class="p-4">
+                        <span class="text-emerald-400 font-bold text-lg tracking-wide">
+                            ${{order.total}}
+                        </span>
+                    </td>
+
+                    <td class="p-4">
+                        <span class="px-2 py-1 rounded bg-gray-800 border border-gray-700 text-xs font-bold text-gray-300 uppercase tracking-wider">
+                            {{order.status}}
+                        </span>
+                    </td>
+                    
+                    <td class="p-4">
+                        <span 
+                            class="px-3 py-1 rounded-full text-xs font-bold border flex items-center w-fit gap-2"
+                            [ngClass]="{
+                                'bg-emerald-500/10 text-emerald-400 border-emerald-500/20': order.statuss === 'ACTIVE',
+                                'bg-red-500/10 text-red-400 border-red-500/20': order.statuss !== 'ACTIVE'
+                            }"
+                        >
+                            <span class="w-1.5 h-1.5 rounded-full" 
+                                  [ngClass]="order.statuss === 'ACTIVE' ? 'bg-emerald-400' : 'bg-red-400'">
+                            </span>
+                            {{order.statuss}}
+                        </span>
+                    </td>
+                    
+                    <td class="p-4 text-center">
+                        <div class="flex justify-center gap-2">
+                            <button
+                                pButton
+                                type="button"
+                                icon="pi pi-pencil"
+                                class="p-button-rounded p-button-text hover:bg-yellow-500/10 text-yellow-500 hover:text-yellow-400 w-8 h-8 transition-colors"
+                                [routerLink]="['/orders/edit', order.id]"
+                                pTooltip="Editar"
+                                tooltipPosition="top"
+                            ></button>
+                            <button
+                                pButton
+                                type="button"
+                                icon="pi pi-trash"
+                                class="p-button-rounded p-button-text hover:bg-red-500/10 text-red-500 hover:text-red-400 w-8 h-8 transition-colors"
+                                (click)="deleteOrder(order)"
+                                pTooltip="Eliminar"
+                                tooltipPosition="top"
+                            ></button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="7" class="text-center p-8">
+                        <div class="flex flex-col items-center justify-center text-gray-500">
+                            <i class="pi pi-shopping-cart text-4xl mb-3 opacity-50"></i>
+                            <p>No se encontraron pedidos.</p>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+
+        </p-table>
+    </div>
 </div>
 
-<p-confirmDialog></p-confirmDialog>
+<p-confirmDialog 
+    [style]="{width: '450px'}" 
+    acceptButtonStyleClass="p-button-danger p-button-text" 
+    rejectButtonStyleClass="p-button-text p-button-plain"
+></p-confirmDialog>
+
 <p-toast></p-toast>

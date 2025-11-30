@@ -1,60 +1,88 @@
-<div class="min-h-screen flex items-center justify-center">
-  <div class="max-w-md w-full">
-    <p-card header="Iniciar Sesión" class="shadow-lg">
-      <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-6">
-        <div class="flex flex-col">
-          <label class="block mb-2 font-semibold text-gray-700">Email *</label>
-          <input 
-            pInputText 
-            type="email"
-            formControlName="email" 
-            class="w-full"
-            placeholder="ejemplo@correo.com"
-            [class.ng-invalid]="form.get('email')?.invalid && form.get('email')?.touched"
-          />
-          <small class="text-red-500 mt-1" *ngIf="getFieldError('email')">
+<div class="min-h-screen flex items-center justify-center bg-[#121212] p-4 relative overflow-hidden">
+
+  <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-[#6ee7b7] rounded-full mix-blend-multiply filter blur-[128px] opacity-10 animate-pulse pointer-events-none"></div>
+  <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-10 pointer-events-none"></div>
+
+  <div class="max-w-md w-full relative z-10">
+    
+    <div class="bg-[#1a1a1a] border border-gray-800 rounded-2xl shadow-2xl p-8">
+      
+      <div class="text-center mb-8">
+        <div class="mx-auto w-16 h-16 bg-gradient-to-br from-[#6ee7b7] to-emerald-600 rounded-xl flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(110,231,183,0.3)]">
+          <span class="text-3xl font-black text-[#1e1e1e]">M</span>
+        </div>
+        <h2 class="text-2xl font-bold text-white tracking-tight">Iniciar Sesión</h2>
+        <p class="text-gray-400 text-sm mt-2">Bienvenido a MercaFacil</p>
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-5">
+        
+        <div class="flex flex-col gap-2">
+          <label class="text-sm font-medium text-gray-300 ml-1">Email</label>
+          <div class="relative">
+            <input 
+              pInputText 
+              type="email"
+              formControlName="email" 
+              class="w-full bg-[#2a2a2a] border border-gray-700 text-white placeholder-gray-500 rounded-xl py-3 pl-10 focus:border-[#6ee7b7] focus:ring-1 focus:ring-[#6ee7b7] transition-all"
+              placeholder="ejemplo@correo.com"
+              [class.ng-invalid]="form.get('email')?.invalid && form.get('email')?.touched"
+            />
+          </div>
+          <small class="text-red-400 text-xs ml-1" *ngIf="getFieldError('email')">
             {{ getFieldError('email') }}
           </small>
         </div>
 
-        <div class="flex flex-col">
-          <label class="block mb-2 font-semibold text-gray-700">Contraseña *</label>
-          <input 
-            pInputText 
-            type="password" 
-            formControlName="password" 
-            class="w-full"
-            placeholder="Ingrese su contraseña"
-            [class.ng-invalid]="form.get('password')?.invalid && form.get('password')?.touched"
-          />
-          <small class="text-red-500 mt-1" *ngIf="getFieldError('password')">
+        <div class="flex flex-col gap-2">
+          <label class="text-sm font-medium text-gray-300 ml-1">Contraseña</label>
+          <div class="relative">
+            <input 
+              pInputText 
+              type="password" 
+              formControlName="password" 
+              class="w-full bg-[#2a2a2a] border border-gray-700 text-white placeholder-gray-500 rounded-xl py-3 pl-10 focus:border-[#6ee7b7] focus:ring-1 focus:ring-[#6ee7b7] transition-all"
+              placeholder="••••••••"
+              [class.ng-invalid]="form.get('password')?.invalid && form.get('password')?.touched"
+            />
+          </div>
+          <small class="text-red-400 text-xs ml-1" *ngIf="getFieldError('password')">
             {{ getFieldError('password') }}
           </small>
         </div>
 
-        <div class="flex flex-col space-y-3 mt-6">
+        <div class="flex flex-col gap-4 mt-8 pt-2">
+          
           <button
             pButton
             type="submit"
-            class="p-button bg-blue-500 hover:bg-blue-600 text-white w-full"
-            label="Iniciar Sesión"
-            icon="pi pi-sign-in"
+            class="w-full bg-[#6ee7b7] hover:bg-[#5cd6a4] text-[#1e1e1e] font-bold border-none py-3.5 rounded-full transition-all shadow-[0_4px_14px_0_rgba(110,231,183,0.39)] hover:scale-[1.02] flex justify-center items-center gap-2"
             [loading]="loading"
-            [disabled]="loading"
-          ></button>
+            [disabled]="loading">
+            <span *ngIf="!loading">Ingresar</span>
+            <i *ngIf="!loading" class="pi pi-arrow-right font-bold text-xs"></i>
+          </button>
 
-          <button
-            pButton
-            type="button"
-            class="p-button p-button-text w-full"
-            label="¿No tienes cuenta? Registrarse"
-            icon="pi pi-user-plus"
-            (click)="goToRegister()"
-            [disabled]="loading"
-          ></button>
+          <div class="text-center mt-2 flex justify-center items-center gap-2">
+            <span class="text-gray-500 text-sm">¿No tienes cuenta?</span>
+            <button
+              type="button"
+              class="text-[#6ee7b7] hover:text-[#5cd6a4] font-medium text-sm hover:underline transition-colors bg-transparent border-none cursor-pointer p-0"
+              (click)="goToRegister()"
+              [disabled]="loading">
+              Regístrate aquí
+            </button>
+          </div>
+          
         </div>
+
       </form>
-    </p-card>
+    </div>
+    
+    <div class="text-center mt-6 text-xs text-gray-600">
+        &copy; 2025 MercaFacil Inc.
+    </div>
+
   </div>
 </div>
 

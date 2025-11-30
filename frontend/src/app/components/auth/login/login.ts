@@ -46,7 +46,7 @@ export class Login {
             detail: 'Sesión iniciada correctamente'
           });
           setTimeout(() => {
-            this.router.navigate(['/clients']);
+            this.router.navigate(['/dashboard']);
           }, 1000);
         },
         error: (error) => {

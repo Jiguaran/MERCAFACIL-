@@ -8,10 +8,11 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ReviewI } from '../../../models/review';
 import { ReviewService } from '../../../services/review';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-review-getall',
-  imports: [TableModule, CommonModule, ButtonModule, RouterModule, ConfirmDialogModule, ToastModule],
+  imports: [TableModule, CommonModule, ButtonModule, RouterModule, ConfirmDialogModule, ToastModule, TooltipModule],
   templateUrl: './getall.html',
   styleUrls: ['./getall.css'],
   encapsulation: ViewEncapsulation.None,

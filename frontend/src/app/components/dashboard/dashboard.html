@@ -1,0 +1,162 @@
+<div class="fade-in-animation space-y-6">
+    
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 px-2">
+        <div>
+            <h1 class="text-3xl font-bold text-white tracking-tight">Dashboard</h1>
+            <p class="text-gray-400 text-sm mt-1">Resumen general de MercaFacil</p>
+        </div>
+        <div class="flex gap-2">
+             <p-button 
+                label="Descargar Reporte" 
+                icon="pi pi-download" 
+                size="small" 
+                [outlined]="true" 
+                severity="secondary" 
+                styleClass="!text-gray-300 !border-gray-700 hover:!bg-white/5">
+            </p-button>
+             <p-button 
+                label="Nueva Orden" 
+                icon="pi pi-plus" 
+                size="small" 
+                styleClass="!bg-[#6ee7b7] !text-[#1e1e1e] !border-none !font-bold">
+            </p-button>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        @for (item of kpis; track item.title) {
+            <div class="bg-[#1a1a1a] p-5 rounded-2xl shadow-xl border border-gray-800 hover:border-[#6ee7b7]/50 transition-all duration-300 group hover:-translate-y-1 relative overflow-hidden">
+                
+                <div class="absolute inset-0 bg-gradient-to-br from-[#6ee7b7]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+
+                <div class="flex justify-between items-start relative z-10">
+                    <div>
+                        <p class="text-gray-400 text-sm font-medium">{{ item.title }}</p>
+                        <h3 class="text-2xl font-bold text-white mt-2">{{ item.value }}</h3>
+                    </div>
+                    <div [class]="item.color + ' p-3 rounded-xl bg-opacity-10 text-white group-hover:scale-110 transition-transform shadow-inner border border-white/5'">
+                        <i [class]="item.icon + ' text-xl'"></i>
+                    </div>
+                </div>
+                <div class="mt-4 flex items-center text-sm relative z-10">
+                    <span [class]="item.trend.includes('+') ? 'text-emerald-400' : 'text-red-400'" class="font-bold mr-2 flex items-center">
+                        <i [class]="item.trend.includes('+') ? 'pi pi-arrow-up text-xs mr-1' : 'pi pi-arrow-down text-xs mr-1'"></i>
+                        {{ item.trend }}
+                    </span>
+                    <span class="text-gray-600">vs mes anterior</span>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <div class="lg:col-span-2 bg-[#1a1a1a] p-6 rounded-2xl shadow-xl border border-gray-800">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-lg font-bold text-white">Tendencia de Ingresos</h3>
+                <button class="text-gray-500 hover:text-white transition"><i class="pi pi-ellipsis-h"></i></button>
+            </div>
+            <div class="h-[300px] w-full">
+                <p-chart type="line" [data]="chartData" [options]="chartOptions" height="100%"></p-chart>
+            </div>
+        </div>
+
+        <div class="bg-[#1a1a1a] p-6 rounded-2xl shadow-xl border border-gray-800 flex flex-col">
+            <h3 class="text-lg font-bold text-white mb-6">Accesos Rápidos</h3>
+            <div class="grid grid-cols-2 gap-4 flex-1">
+                <button class="
+                    p-4 rounded-xl 
+                    bg-[#252525] border border-gray-800
+                    hover:bg-[#2a2a2a] hover:border-[#6ee7b7] 
+                    transition-all duration-200 group
+                    flex flex-col items-center justify-center gap-3
+                ">
+                    <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 group-hover:bg-[#6ee7b7] group-hover:text-[#1e1e1e] transition-colors">
+                        <i class="pi pi-box text-xl"></i>
+                    </div>
+                    <span class="text-sm text-gray-300 font-medium group-hover:text-white">Productos</span>
+                </button>
+
+                <button class="
+                    p-4 rounded-xl 
+                    bg-[#252525] border border-gray-800
+                    hover:bg-[#2a2a2a] hover:border-[#6ee7b7] 
+                    transition-all duration-200 group
+                    flex flex-col items-center justify-center gap-3
+                ">
+                    <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 group-hover:bg-[#6ee7b7] group-hover:text-[#1e1e1e] transition-colors">
+                        <i class="pi pi-users text-xl"></i>
+                    </div>
+                    <span class="text-sm text-gray-300 font-medium group-hover:text-white">Clientes</span>
+                </button>
+
+                <button class="
+                    p-4 rounded-xl 
+                    bg-[#252525] border border-gray-800
+                    hover:bg-[#2a2a2a] hover:border-[#6ee7b7] 
+                    transition-all duration-200 group
+                    flex flex-col items-center justify-center gap-3
+                ">
+                    <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 group-hover:bg-[#6ee7b7] group-hover:text-[#1e1e1e] transition-colors">
+                        <i class="pi pi-truck text-xl"></i>
+                    </div>
+                    <span class="text-sm text-gray-300 font-medium group-hover:text-white">Envíos</span>
+                </button>
+
+                 <button class="
+                    p-4 rounded-xl 
+                    bg-[#252525] border border-gray-800
+                    hover:bg-[#2a2a2a] hover:border-[#6ee7b7] 
+                    transition-all duration-200 group
+                    flex flex-col items-center justify-center gap-3
+                ">
+                    <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 group-hover:bg-[#6ee7b7] group-hover:text-[#1e1e1e] transition-colors">
+                        <i class="pi pi-cog text-xl"></i>
+                    </div>
+                    <span class="text-sm text-gray-300 font-medium group-hover:text-white">Config</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-[#1a1a1a] p-6 rounded-2xl shadow-xl border border-gray-800">
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-lg font-bold text-white">Órdenes Recientes</h3>
+            <p-button label="Ver Todas" [text]="true" size="small" styleClass="!text-[#6ee7b7] hover:!bg-[#6ee7b7]/10"></p-button>
+        </div>
+        
+        <p-table [value]="recentOrders" styleClass="p-datatable-sm custom-dark-table" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
+                <tr class="bg-[#252525] border-b border-gray-700">
+                    <th class="p-3 text-gray-300 font-semibold rounded-tl-lg">ID</th>
+                    <th class="p-3 text-gray-300 font-semibold">Cliente</th>
+                    <th class="p-3 text-gray-300 font-semibold">Total</th>
+                    <th class="p-3 text-gray-300 font-semibold">Estado</th>
+                    <th class="p-3 text-gray-300 font-semibold rounded-tr-lg">Acción</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-order>
+                <tr class="border-b border-gray-800 hover:bg-[#252525] transition-colors">
+                    <td class="p-3 text-gray-400 font-mono text-sm">{{ order.id }}</td>
+                    <td class="p-3 text-white font-medium">
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 rounded-full bg-gray-700 flex items-center justify-center text-xs text-white">
+                                {{ order.client.charAt(0) }}
+                            </div>
+                            {{ order.client }}
+                        </div>
+                    </td>
+                    <td class="p-3 text-[#6ee7b7] font-bold tracking-wide">{{ order.total }}</td>
+                    <td class="p-3">
+                        <span [class]="'px-2 py-1 rounded-md text-xs font-bold border ' + getStatusColor(order.status)">
+                            {{ order.status }}
+                        </span>
+                    </td>
+                    <td class="p-3">
+                        <p-button icon="pi pi-angle-right" [text]="true" [rounded]="true" styleClass="text-gray-400 hover:text-white hover:bg-white/10 w-8 h-8"></p-button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
