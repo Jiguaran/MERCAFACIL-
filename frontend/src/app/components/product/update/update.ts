@@ -8,10 +8,8 @@ import { Select } from 'primeng/select';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ProductService } from '../../../services/product';
-import { ClientI } from '../../../models/client';
 import { CategoryService } from '../../../services/category'; // <-- IMPORTANTE, para poder crear un puente para editar y crear
 import { SellerService } from '../../../services/seller'; 
-import { SelectModule } from 'primeng/select'; //importamos el selectModule para poder elegir lo que quiero usar y poner
 
 @Component({
   selector: 'app-product-update',

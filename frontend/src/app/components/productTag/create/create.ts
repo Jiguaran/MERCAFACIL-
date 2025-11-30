@@ -42,8 +42,8 @@ export class Create {
     private tagService: TagService    // <-- INYECTAMOS SERVICIO
   ) {
     this.form = this.fb.group({
-      id_seller: ['', [Validators.required]],
-      id_category: ['', [Validators.required]],
+      id_product: ['', [Validators.required]],
+      id_tag: ['', [Validators.required]],
       status: ['ACTIVE', Validators.required]
     });
   }

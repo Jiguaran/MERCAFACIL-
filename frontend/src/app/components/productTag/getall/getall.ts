@@ -52,64 +52,71 @@ export class Getall implements OnInit {
     });
   }
 
-  // deleteProductTag(productTag: ProductTagI): void {
-  //   this.confirmationService.confirm({
-  //     message: `¿Está seguro de eliminar la etiqueta de producto ${productTag.name}?`,
-  //     header: 'Confirmar eliminación',
-  //     icon: 'pi pi-exclamation-triangle',
-  //     accept: () => {
-  //       if (productTag) {
-  //         this.productTagService.deleteProductTag(productTag.id).subscribe({
-  //           next: () => {
-  //             this.messageService.add({
-  //               severity: 'success',
-  //               summary: 'Éxito',
-  //               detail: 'Etiqueta de producto eliminada correctamente'
-  //             });
-  //             this.loadProductTags();
-  //           },
-  //           error: (error) => {
-  //             console.error('Error deleting product:', error);
-  //             this.messageService.add({
-  //               severity: 'error',
-  //               summary: 'Error',
-  //               detail: 'Error al eliminar el producto'
-  //             });
-  //           }
-  //         });
-  //       }
-  //     }
-  //   });
-    
-  // }
+deleteProductTag(productTag: ProductTagI): void {
+  this.confirmationService.confirm({
+    message: `¿Está seguro de eliminar esta relación Product-Tag?`,
+    header: 'Confirmar eliminación',
+    icon: 'pi pi-exclamation-triangle',
+    accept: () => {
+      if (productTag) {
+        this.productTagService.deleteProductTag(
+          productTag.id_product,
+          productTag.id_tag
+        ).subscribe({
+          next: () => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Éxito',
+              detail: 'Relación Product-Tag eliminada correctamente'
+            });
 
-  // deletelogicalProductTag(productTag: ProductTagI): void {
-  //   this.confirmationService.confirm({
-  //     message: `¿Está seguro de eliminar la etiqueta de producto ${productTag}?`,
-  //     header: 'Confirmar eliminación',
-  //     icon: 'pi pi-exclamation-triangle',
-  //     accept: () => {
-  //       if (productTag.id) {
-  //         this.productTagService.deleteProductTag(productTag.id).subscribe({
-  //           next: () => {
-  //             this.messageService.add({
-  //               severity: 'success',
-  //               summary: 'Éxito',
-  //               detail: 'Etiqueta de producto eliminada correctamente'
-  //             });
-  //             this.loadProducts();
-  //           },
-  //           error: (error) => {
-  //             console.error('Error deleting product:', error);
-  //             this.messageService.add({
-  //               severity: 'error',
-  //               summary: 'Error',
-  //               detail: 'Error al eliminar el producto'
-  //             });
-  //           }
-  //         });
-  //       }
-  //     }
-  //   });
-  // }
+            this.loadProductTags();
+          },
+          error: (error) => {
+            console.error('Error deleting ProductTag:', error);
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Error al eliminar la relación Product-Tag'
+            });
+          }
+        });
+      }
+    }
+  });
+}
+
+    
+
+
+deletelogicalProductTag(productTag: ProductTagI): void {
+  this.confirmationService.confirm({
+    message: `¿Está seguro de eliminar la etiqueta del producto ${productTag.id_product} con la etiqueta ${productTag.id_tag}?`,
+    header: 'Confirmar eliminación',
+    icon: 'pi pi-exclamation-triangle',
+    accept: () => {
+
+      this.productTagService.deleteProductTag(productTag.id_product, productTag.id_tag)
+        .subscribe({
+          next: () => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Éxito',
+              detail: 'Etiqueta de producto eliminada correctamente'
+            });
+            this.loadProductTags();
+          },
+          error: (error) => {
+            console.error('Error deleting product tag:', error);
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Error al eliminar la etiqueta de producto'
+            });
+          }
+        });
+    }
+  });
+}
+
 }

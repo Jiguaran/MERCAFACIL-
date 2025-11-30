@@ -15,7 +15,7 @@ import { CardModule } from 'primeng/card';
   imports: [CommonModule, ReactiveFormsModule, ButtonModule, InputTextModule, ToastModule, CardModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
-  providers: [MessageService, AuthService]
+  providers: [MessageService]
 })
 export class Login {
   form: FormGroup;

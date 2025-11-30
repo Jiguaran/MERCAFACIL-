@@ -1,5 +1,8 @@
 import { Request, Response } from "express";
 import { ProductTag, ProductTagI } from "../models/ProductTag";
+import { Product } from "../models/Product";
+import {Tag} from "../models/Tag";
+
 
 export class ProductTagController {
   // Get all productTag with status "ACTIVE"
@@ -7,6 +10,18 @@ export class ProductTagController {
     try {
       const producTags: ProductTagI[] = await ProductTag.findAll({
         where: { status: 'ACTIVE' },
+        include: [
+          {
+            model: Product,
+            as: "product",
+            attributes: ['name'],
+          },
+          {
+            model: Tag,
+            as: "tag",
+            attributes: ['name'],
+          }
+        ],
       });
       res.status(200).json({ producTags });
     } catch (error) {

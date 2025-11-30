@@ -17,16 +17,31 @@
 
 <body class="m-0 flex flex-col min-h-screen font-sans bg-[#1e1e1e] text-[#f1f1f1]">
     
-    <app-header class="border border-gray-700"></app-header> 
+    @if (authService.authState$ | async) {
+        <app-header class="border border-gray-700"></app-header> 
+    }
 
     <div class="flex flex-1 w-full"> 
         
-        <aside class="w-64 border border-gray-700 p-4"> <app-aside></app-aside> 
-        </aside>
+        @if (authService.authState$ | async) {
+            <aside class="w-64 border border-gray-700 p-4"> 
+                <app-aside></app-aside> 
+            </aside>
+        }
 
-        <main class="flex-1 border border-gray-700 p-4"> <router-outlet></router-outlet>
+        <main class="flex-1 w-full flex flex-col"
+              [class.border]="authService.authState$ | async"
+              [class.border-gray-700]="authService.authState$ | async"
+              [class.p-4]="authService.authState$ | async">
+             
+             <router-outlet></router-outlet>
+
         </main>
+        
     </div>
 
-    <app-footer class="border border-gray-700 p-3"></app-footer>
+    @if (authService.authState$ | async) {
+        <app-footer class="border border-gray-700 p-3"></app-footer>
+    }
+
 </body>

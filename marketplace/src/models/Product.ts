@@ -90,3 +90,15 @@ Shipment.belongsTo(Order, { foreignKey: 'id_order', as: 'order' });
 //order <-> product
 OrderDetail.belongsTo(Order, { foreignKey: "id_order", as: "order" });
 OrderDetail.belongsTo(Product, { foreignKey: "id_product", as: "product" });
+
+// ProductTag -> Product
+ProductTag.belongsTo(Product, {
+  foreignKey: "id_product",
+  as: "product"
+});
+
+// ProductTag -> Tag
+ProductTag.belongsTo(Tag, {
+  foreignKey: "id_tag",
+  as: "tag"
+});

@@ -8,7 +8,7 @@ GET {{baseUrl}}/api/productTags
 
 
 ### Obtener una asociación por su clave compuesta (id_product/id_tag)
-GET {{baseUrl}}//api/productTags/1
+GET {{baseUrl}}/api/productTags/3/2
 
 ### Crear una nueva asociación producto-tag
 POST {{baseUrl}}/api/productTags
@@ -22,7 +22,8 @@ Content-Type: application/json
 
 
 ### Eliminar una asociación físicamente
-DELETE {{baseUrl}}//api/productTags/1
+DELETE {{baseUrl}}//api/productTags/3/2
+
 
 
 ### ================== RUTAS CON AUTENTICACIÓN ==================
@@ -32,7 +33,7 @@ GET {{baseUrl}}/api/ocul/ProductTags
 Authorization: Bearer {{token}}
 
 ### Obtener una asociación por ID (CON token)
-GET {{baseUrl}}/api/ocul/ProductTags/1
+GET {{baseUrl}}/api/ocul/ProductTags/3/2
 Authorization: Bearer {{token}}
 
 ### Crear una nueva asociación producto-tag (CON token)

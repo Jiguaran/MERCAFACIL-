@@ -48,7 +48,7 @@
                     </span>
                 </td>
                 <td class="text-center">
-                    <div class="flex justify-center gap-2">
+                    <div class="flex justify-left ">
                         <button
                             pButton
                             type="button"
@@ -56,6 +56,14 @@
                             class="p-button-rounded p-button-text p-button-warning"
                             [routerLink]="['/productTags/edit', productTag.id]"
                             pTooltip="Editar"
+                        ></button>
+                        <button
+                            pButton
+                            type="button"
+                            icon="pi pi-trash"
+                            class="p-button-rounded p-button-text p-button-danger"
+                            (click)="deleteProductTag(productTag)"
+                            pTooltip="Eliminar"
                         ></button>
                     </div>
                 </td>

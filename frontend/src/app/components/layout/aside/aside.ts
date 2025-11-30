@@ -38,11 +38,11 @@ ngOnInit() {
         icon : 'pi pi-fw pi-chart-bar',
         routerLink: '/tags'
       },
-      // {
-      //   label : 'Etiquetas de productos',
-      //   icon : 'pi pi-fw pi-chart-bar',
-      //   routerLink: '/productTags'
-      // },
+      {
+        label : 'Etiquetas de productos',
+        icon : 'pi pi-fw pi-chart-bar',
+        routerLink: '/productTags'
+      },
       {
         label : 'Pedido',
         icon : 'pi pi-fw pi-chart-bar',

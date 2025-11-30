@@ -11,7 +11,7 @@ export class ProductTagRoutes {
       .get(this.productTagController.getAllProductTags)
       .post(this.productTagController.createProductTag);
 
-    app.route("/api/productTags/:id")
+    app.route("/api/productTags/:id_product/:id_tag")
       .get(this.productTagController.getProductTagById)
       .patch(this.productTagController.updateProductTag)
       .delete(this.productTagController.deleteProductTag);
@@ -24,7 +24,7 @@ export class ProductTagRoutes {
       .get(authMiddleware, this.productTagController.getAllProductTags)
       .post(authMiddleware, this.productTagController.createProductTag);
 
-    app.route("/api/ocul/ProductTags/:id")
+    app.route("/api/ocul/ProductTags/:id_product/:id_tag")
       .get(authMiddleware, this.productTagController.getProductTagById)
       .patch(authMiddleware, this.productTagController.updateProductTag)
       .delete(authMiddleware, this.productTagController.deleteProductTag);
